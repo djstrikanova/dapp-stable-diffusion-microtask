@@ -175,9 +175,9 @@
                     <tbody>
                       <tr v-for="r in dataModal" :key="r.id">
                         <td>
-                          <img :src="r.croppedCanvas" style="width: 100px">
+                          <img :src="r.image_url" style="width: 100px">
                         </td>
-                        <td>{{ r.label }}</td>
+                        <td>{{ r.pos_prompts }}</td>
                       </tr>
                     </tbody>
                   </table>

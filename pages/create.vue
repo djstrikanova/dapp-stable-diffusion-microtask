@@ -5,25 +5,24 @@
         <!-- Create your batch of tasks -->
         <div v-if="step === 1" id="step-1">
           <h2 class="title">
-            Add Images
+            Add Prompts
           </h2>
           <div class="field">
             <div class="box">
               <div class="mx-auto" style="max-width: 600px;">
                 <div class="field is-horizontal">
                   <div class="field-label is-normal">
-                    <label class="label is-pulled-left">Image URL:</label>
+                    <label class="label is-pulled-left">Prompt:</label>
                   </div>
                   <div class="field-body">
                     <div class="field">
                       <p class="control">
                         <input
                           :ref="`placeholder-${placeindex}`"
-                          v-model="newTask.image_url"
-                          type="url"
-                          pattern="https?://.+"
+                          v-model="newTask.prompt"
+                          type="text"
                           class="input is-info"
-                          placeholder="https://effect.network/img/logo/logo.png"
+                          placeholder="A fox reading a book"
                           required
                           @keydown.enter.prevent="createTask"
                         >
@@ -54,7 +53,7 @@
                           {{ placeholder }}
                         </th> -->
                         <th>
-                          Images
+                          Prompts
                         </th>
                         <th />
                         <!-- <th>Min. Labels</th> -->
@@ -70,7 +69,8 @@
                       </tr>
                       <tr v-for="(task, index) in batch" v-else :key="task.id">
                         <th v-for="placeholder in campaign.placeholders" :key="placeholder">
-                          <img :src="batch[index].image_url" alt="" srcset="" style="object-fit: contain; height: 100px;">
+<!--                         <img :src="batch[index].image_url" alt="" srcset="" style="object-fit: contain; height: 100px;">-->
+                          <p>{{ batch[index].prompt }}</p>
                         </th>
                         <td v-for="placeholder in campaign.placeholders" :key="placeholder" class="task-placeholder-value has-text-left">
                           <div>
@@ -90,14 +90,14 @@
                 </div>
                 <div v-else>
                   <p class="has-text-centered">
-                    No images added yet.
+                    No prompts added yet.
                   </p>
                 </div>
               </div>
             </div>
             <div v-if="campaign && campaign.info" class="box has-text-centered">
               <p>
-                Workers per image:
+                Repetitions (How many different workers should make a submission):
                 <strong>{{ repetitions }}</strong>
               </p>
               <div class="mx-auto">
@@ -170,7 +170,7 @@
                   <thead />
                   <tbody>
                     <tr>
-                      <td>Images</td>
+                      <td>Prompts</td>
                       <td>{{ batch.length }}&nbsp;×</td>
                     </tr>
                     <tr>
@@ -283,8 +283,8 @@ export default {
   name: 'Create',
   data () {
     return {
-      campaignId: 41, // USE OWN CAMPAIGN ID HERE
-      env: 'mainnet',
+      campaignId: 43, // USE OWN CAMPAIGN ID HERE
+      env: 'mainnet', // USE 'mainnet' FOR MAINNET
       proxy: 'efxtaskproxy', // optional use proxy
       loading: false,
       batch: [],
@@ -389,21 +389,21 @@ export default {
      * Push new task in to the tasks array and create a prepare a new task.
      */
     createTask () {
-      if (this.newTask.image_url.length === 0) {
-        this.setErrorMessage('Please add a valid image url. ex: https://example.com/image.jpg')
-        return
-      }
-
-      try {
-        if (!this.newTask.image_url.includes('http') || !this.newTask.image_url.includes('https')) {
-          this.newTask.image_url = `https://${this.newTask.image_url}`
-        }
-        const url = new URL(this.newTask.image_url)
-        console.log('url', url)
-      } catch (error) {
-        this.setErrorMessage('Please add a valid image url. ex: https://example.com/image.jpg')
-        return
-      }
+      // if (this.newTask.prompt.length === 0) {
+      //   this.setErrorMessage('Please add a valid prompt')
+      //   return
+      // }
+      //
+      // try {
+      //   if (!this.newTask.image_url.includes('http') || !this.newTask.image_url.includes('https')) {
+      //     this.newTask.image_url = `https://${this.newTask.image_url}`
+      //   }
+      //   const url = new URL(this.newTask.image_url)
+      //   console.log('url', url)
+      // } catch (error) {
+      //   this.setErrorMessage('Please add a valid image url. ex: https://example.com/image.jpg')
+      //   return
+      // }
 
       this.batch.push(this.newTask)
       // Reset the newTask object
@@ -524,7 +524,7 @@ export default {
           ]
         })
         // Perform the login, which returns the users identity
-        const identity = await alink.login('Effect-Network-Image-Labeling')
+        const identity = await alink.login('Stable-Diffusion-Prompting-Tasks')
         const { session } = identity
         const signatureProvider = session.makeSignatureProvider()
         const account = { accountName: session.auth.actor.toString(), permission: session.auth.permission.toString() }

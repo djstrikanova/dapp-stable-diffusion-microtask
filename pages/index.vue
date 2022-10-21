@@ -4,17 +4,17 @@
     <div class="hero-body">
       <div class="container has-text-centered">
         <figure class="image mx-auto" style="object-fit: contain; display: block; border-radius: 5px; width: 300px;">
-          <img src="./../assets/images/dalle-shiba-picture.png" alt="">
+          <img src="./../assets/images/bear.png" alt="">
           <!-- <img src="./../assets/images/dalle-shiba-magnifying-glass.png" alt=""> -->
         </figure>
         <br>
         <p class="title">
-          SnapShot Labeler
+          Stable Diffusion Bounties
         </p>
         <hr>
         <section class="section">
           <p class="subtitle">
-            Use the Effect Network Work-Force to upgrade your NFT's and Images.
+            Use the Effect Network Work-Force to create Stable Diffusion generated images for you.
           </p>
           <div class="columns">
             <div class="column box m-2 p-2">
@@ -23,7 +23,7 @@
               </div>
               <hr>
               <p>
-                Add links to your NFT's or Images
+                Create basic prompts and let the workers use their imagination trying to match it.
               </p>
             </div>
             <div class="column box m-2 p-2">
@@ -48,7 +48,7 @@
               </div>
               <hr>
               <p>
-                The Work-Force will upgrade your Images or NFT's
+                The Work-Force will generate their take on your prompts.
               </p>
             </div>
             <div class="column box m-2 p-2">
@@ -57,7 +57,7 @@
               </div>
               <hr>
               <p>
-                Download upgraded metadata.
+                Download the images and use them as you wish.
               </p>
             </div>
           </div>
