@@ -74,9 +74,9 @@
                         </th>
                         <td v-for="placeholder in campaign.placeholders" :key="placeholder" class="task-placeholder-value has-text-left">
                           <div>
-                            <a :href="batch[index].image_url" target="_blank" rel="noopener noreferrer" style="word-break: normal;">
-                              {{ batch[index].image_url }}
-                            </a>
+<!--                            <a :href="batch[index].image_url" target="_blank" rel="noopener noreferrer" style="word-break: normal;">-->
+<!--                              {{ batch[index].image_url }}-->
+<!--                            </a>-->
                           </div>
                         </td>
                         <td>
