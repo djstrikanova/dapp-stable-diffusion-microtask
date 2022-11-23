@@ -105,6 +105,7 @@
                           <th>ID</th>
                           <th>Submitted on</th>
                           <th>Result</th>
+                          <th>Parameters Aqualxx</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -119,14 +120,18 @@
                           </td>
                           <td>{{ res.submitted_on }}</td>
                           <td>
-                            <button
-                              class="button is-info is-small is-rounded"
-                              @click.prevent="viewResult(res.data)"
+                            <img
+                              class=""
+                              style="max-width:512px"
+                              :src=JSON.parse(res.data).image_url
                             >
-                              <span class="">
-                                <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="icon is-small" />
+                          </td>
+                          <td>
+                            <a :href=JSON.parse(res.data).aqualxx_link target="_blank" rel="noopener noreferrer">
+                              <span class="icon">
+                                <font-awesome-icon class="icon is-small" icon="fa-solid fa-arrow-up-right-from-square" />
                               </span>
-                            </button>
+                            </a>
                           </td>
                         </tr>
                       </tbody>
@@ -150,7 +155,7 @@
           <div class="modal-card p-6">
             <header class="modal-card-head">
               <p class="modal-card-title">
-                Image Label Results
+                Stable Diffusion Results
               </p>
               <button class="delete" aria-label="close" @click.prevent="resultModal = false" />
             </header>
@@ -193,9 +198,6 @@
         </div>
       </div>
     </div>
-  </div>
-  </div>
-  </div>
   </div>
 </template>
 
@@ -269,9 +271,12 @@ export default {
     async viewResult (data) {
       this.resultModal = true
       const dataJson = JSON.parse(data)
+      console.log('dataJson', dataJson)
       const ipfsData = await this.effectsdk.force.getIpfsContent(dataJson?.hash)
+      console.log('ipfsData', ipfsData)
       this.dataModal = ipfsData?.data
-      this.imageModal = ipfsData?.image_url
+      console.log('data-modal', this.dataModal)
+      this.imageModal = dataJson?.image_url
     }
   }
 }
