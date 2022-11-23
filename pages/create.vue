@@ -249,8 +249,7 @@
             <p class="mx-6 px-6 has-text-centered">
               <strong>Success!</strong><br>
               Your order is being processed.
-              <a v-if="env === 'mainnet'" :href="`https://app.effect.network/campaigns/${campaign.id}/${createdBatchId}`" target="_blank" rel="noopener noreferrer">Effect Force</a>
-              <a v-else :href="`https://testnet.effect.network/campaigns/${campaign.id}/${createdBatchId}`" target="_blank" rel="noopener noreferrer">Effect Force</a>
+              <a :href="`https://app.effect.network/campaigns/${campaign.id}/${createdBatchId}`" target="_blank" rel="noopener noreferrer">Effect Force</a>
               <br>
             </p><hr>
             <div class="buttons is-centered">
@@ -274,7 +273,7 @@
 <script>
 // Import Effect-JS
 import * as effectsdk from '@effectai/effect-js'
-// import Web3 from 'web3'
+import Web3 from 'web3'
 import AnchorLink from 'anchor-link'
 import AnchorLinkBrowserTransport from 'anchor-link-browser-transport'
 import { mapState, mapActions } from 'vuex'
@@ -555,15 +554,14 @@ export default {
         try {
           console.log('Connecting to metamask wallet.')
           // @ts-ignore
-          // eslint-disable-next-line no-unused-vars
-          const ethAccount = await window.ethereum.request({ method: 'eth_requestAccounts' })
+          await window.ethereum.request({ method: 'eth_requestAccounts' })
           // @ts-ignore
           await window.ethereum.request({
             method: 'wallet_switchEthereumChain',
             params: [{ chainId: '0x38' }] // 0x38 is the chainId of bsc testnet.
           })
           // @ts-ignore
-          // this.connectAccount.provider = new Web3(window.ethereum)
+          this.connectAccount.provider = new Web3(window.ethereum)
           this.connectAccount.account = null
           this.connectAccount.providerName = 'metamask'
         } catch (error) {
