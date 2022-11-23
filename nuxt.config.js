@@ -20,7 +20,7 @@ export default {
   target: 'static',
 
   router: {
-    base: '/dapp-stable-diffusion-bounties/'
+    base: '/dapp-stable-diffusion-microtask/'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
