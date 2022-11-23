@@ -427,7 +427,7 @@ export default {
         this.loading = true
 
         const content = {
-          tasks: this.batch.map(el => ({ image_url: el.image_url }))
+          tasks: this.batch.map(el => ({ prompt: el.prompt }))
         }
         // console.log('uploading batch', content)
         const result = await this.client.force
@@ -524,7 +524,7 @@ export default {
           ]
         })
         // Perform the login, which returns the users identity
-        const identity = await alink.login('Stable-Diffusion-Prompting-Tasks')
+        const identity = await alink.login('Effect-Network-Image-Labeling')
         const { session } = identity
         const signatureProvider = session.makeSignatureProvider()
         const account = { accountName: session.auth.actor.toString(), permission: session.auth.permission.toString() }
