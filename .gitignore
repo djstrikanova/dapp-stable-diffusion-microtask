@@ -103,3 +103,6 @@ dist
 # TernJS port file
 .tern-port
 .vscode/settings.json
+
+# Tells me to not commit
+.static/sw.js
