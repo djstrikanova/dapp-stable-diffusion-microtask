@@ -8,13 +8,19 @@
         <nav class="breadcrumb">
           <ul>
             <li>
-              <nuxt-link to="/">Home</nuxt-link>
+              <nuxt-link to="/">
+                Home
+              </nuxt-link>
             </li>
             <li>
-              <nuxt-link to="/batch">Orders</nuxt-link>
+              <nuxt-link to="/batch">
+                Orders
+              </nuxt-link>
             </li>
             <li>
-              <nuxt-link to="#" class="is-active">ID</nuxt-link>
+              <nuxt-link to="#" class="is-active">
+                ID
+              </nuxt-link>
             </li>
           </ul>
         </nav>
@@ -123,11 +129,11 @@
                             <img
                               class=""
                               style="max-width:512px"
-                              :src=JSON.parse(res.data).image_url
+                              :src="getImageUrl(res.data)"
                             >
                           </td>
                           <td>
-                            <a :href=JSON.parse(res.data).aqualxx_link target="_blank" rel="noopener noreferrer">
+                            <a :href="getAqualxxUrl(res.data)" target="_blank" rel="noopener noreferrer">
                               <span class="icon">
                                 <font-awesome-icon class="icon is-small" icon="fa-solid fa-arrow-up-right-from-square" />
                               </span>
@@ -277,6 +283,22 @@ export default {
       this.dataModal = ipfsData?.data
       console.log('data-modal', this.dataModal)
       this.imageModal = dataJson?.image_url
+    },
+    getImageUrl (data) {
+      try {
+        const dataJson = JSON.parse(data)
+        return dataJson?.image_url
+      } catch (e) {
+        return 'error'
+      }
+    },
+    getAqualxxUrl (data) {
+      try {
+        const dataJson = JSON.parse(data)
+        return dataJson?.aqualxx_link
+      } catch (e) {
+        return 'error'
+      }
     }
   }
 }
